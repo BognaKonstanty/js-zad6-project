@@ -21,12 +21,18 @@ exports.welcome = function(request, response) {
         response.write(html);
         response.end();
     });
-    response.write("Witaj na stronie startowej!");
-    response.end();
 }
 
 exports.error = function(request, response) {
     console.log("Nie wiem co robić.");
     response.write("404 :(");
     response.end(); 
+}
+
+exports.show = function(request, response) {
+    fs.readFile("test.png", "binary", function(error, file) {
+        response.writeHead(200, {"Content-Type": "image/png"});
+        response.write(file, "binary");
+        response.end();
+    });
 }
